@@ -1,4 +1,4 @@
-package com.covid.ui.splash;
+package com.covid.splash;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,12 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.covid.R;
 import com.covid.databinding.FragmentSplashBinding;
-import com.covid.ui.adapter.onboarding.OnBoardingAapter;
-import com.covid.ui.model.OnBoardingModel;
+import com.covid.adapter.onboarding.OnBoardingAapter;
+import com.covid.model.OnBoardingModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,9 +75,9 @@ public class SplashFragment extends Fragment
     private void initialViews()
     {
         onBoardingModels = new ArrayList<>();
-//        onBoardingModels.add(new OnBoardingModel(R.drawable., "Enjoy alone", "You can enjoy Movie X by alone"));
-//        onBoardingModels.add(new OnBoardingModel(R.drawable., "watch with the one you love", "You can watch the movie X with the one you love"));
-//        onBoardingModels.add(new OnBoardingModel(R.drawable., "search for a film", "You can search for x movie you want to watch"));
+        onBoardingModels.add(new OnBoardingModel(R.drawable.ic_social_distancing, "Social Distancing", "Maintain distance between people in the community"));
+        onBoardingModels.add(new OnBoardingModel(R.drawable.ic_wash_hands, "Wash hands", "Keep washing hands regularly"));
+        onBoardingModels.add(new OnBoardingModel(R.drawable.ic_medical_care, "Medical care", "Constant follow-up with medical care"));
         onBoardingAapter = new OnBoardingAapter(onBoardingModels);
         binding.viewPagerOnboarding.setAdapter(onBoardingAapter);
     }

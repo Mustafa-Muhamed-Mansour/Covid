@@ -3,9 +3,11 @@ package com.covid.ui.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.covid.ui.model.CountryModel;
 import com.covid.ui.network.ApiClient;
 import com.covid.ui.network.ApiService;
-import com.covid.ui.responses.CountryResponse;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,28 +24,28 @@ public class CountryRespository
         apiService = ApiClient.getRetrofit().create(ApiService.class);
     }
 
-    public LiveData<CountryResponse> getCountry()
+    public LiveData<ArrayList<CountryModel>> getCountry()
     {
-        MutableLiveData<CountryResponse> countryResponseMutableLiveData = new MutableLiveData<>();
+        MutableLiveData<ArrayList<CountryModel>> countryModelMutableLiveData = new MutableLiveData<>();
 
         apiService
                 .getCountry()
-                .enqueue(new Callback<CountryResponse>()
+                .enqueue(new Callback<ArrayList<CountryModel>>()
                 {
                     @Override
-                    public void onResponse(Call<CountryResponse> call, Response<CountryResponse> response)
+                    public void onResponse(Call<ArrayList<CountryModel>> call, Response<ArrayList<CountryModel>> response)
                     {
-                        countryResponseMutableLiveData.postValue(response.body());
+                        countryModelMutableLiveData.setValue(response.body());
                     }
 
                     @Override
-                    public void onFailure(Call<CountryResponse> call, Throwable t)
+                    public void onFailure(Call<ArrayList<CountryModel>> call, Throwable t)
                     {
                         stringMutableLiveData.setValue(t.getMessage());
                     }
                 });
 
-        return countryResponseMutableLiveData;
+        return countryModelMutableLiveData;
     }
 
 }
